@@ -7,5 +7,9 @@
 // }
 
 const Wallet = require('./wallet');
-const wallet = new Wallet();
-console.log(wallet.toString());
+const Transaction = require('./wallet/transaction');
+wallet = new Wallet();
+amount = 50;
+recipient = 'r3c1p13nt';
+transaction = Transaction.newTransaction(wallet, recipient, amount);
+console.log('The test!!!!',transaction.outputs.find(output => output.address === wallet.publicKey).amout);
