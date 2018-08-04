@@ -21,7 +21,7 @@ describe('Transaction', () => {
       });
 
       it('should input the balance of the wallet', () => {
-          expect(transaction.input.amout).toEqual(wallet.balance);
+          expect(transaction.input.amount).toEqual(wallet.balance);
       });
 
       it('validates a valid transaction', () => {

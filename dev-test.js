@@ -13,7 +13,7 @@
 // amount = 50;
 // recipient = 'r3c1p13nt';
 // transaction = Transaction.newTransaction(wallet, recipient, amount);
-// console.log('The test!!!!',transaction.outputs.find(output => output.address === wallet.publicKey).amout);
+// console.log('The test!!!!',transaction.outputs.find(output => output.address === wallet.publicKey).amount);
 
 wallet = new Wallet();
 tp = new TransactionPool();
@@ -23,4 +23,17 @@ recipient = 'r4nd0m-4ddr355';
 transaction = wallet.createTransaction(recipient, sendAmount, tp);
 wallet.createTransaction(recipient, sendAmount, tp);
 console.log('The transaction: ', transaction.outputs.find(output => output.address === wallet.publicKey).amount);
-//console.log(transaction.outputs.find(output => output.address === wallet.publicKey).amount);
+let validTransactions;
+validTransactions = [...tp.transactions];
+for (let i=0 ; i < 6; i++){
+    wallet = new Wallet();
+    transaction = wallet.createTransaction('r4and-4ddr355', 30, tp);
+    console.log(transaction);
+        // if(i%2 === 0) {
+        //     transaction.input.amount = 999;
+        // } else {
+        //     validTransactions.push(transaction);
+        // }
+}
+
+console.log(tp.validTransactions())
