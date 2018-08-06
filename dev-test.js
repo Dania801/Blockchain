@@ -47,6 +47,8 @@
 let tp, wallet, transaction, bc;
 tp = new TransactionPool();
 wallet = new Wallet();
-transaction = wallet.createTransaction('r4nd-4ddr355', 30, bc, tp);
 bc = new Blockchain();
+transaction = wallet.createTransaction('r4nd-4ddr355', 30, bc, tp);
 console.log(tp.transactions.find(t => t.id === transaction.id));
+console.log('===> transaction ', transaction);
+console.log(tp.transactions.find(t => t.id === transaction.id) === transaction)
