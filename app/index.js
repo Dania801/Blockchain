@@ -50,6 +50,11 @@ app.get('/mine-transactions', (req, res) => {
     res.redirect('/blocks');
 });
 
+app.get('/balance', (req, res) => {
+    const balance = wallet.calculateBalance(bc);
+    res.json({ balance: balance });
+});
+
 app.listen(HTTP_PORT, () => {
     console.log(`Listening in the port ${HTTP_PORT}`);
 });

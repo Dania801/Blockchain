@@ -10,13 +10,19 @@ class Miner {
     }
 
     mine() {
+        // validate the transactions in transaction pool
         const validTransactions = this.transactionPool.validTransactions();
+        // reward miner
         validTransactions.push(
           Transaction.rewardTransaction(this.wallet, Wallet.blockchainWallet())
         );
+        // add the reward transaction to local blockchain
         const block = this.blockchain.addBlock(validTransactions);
+        // sync chains between all peers
         this.p2pServer.syncChains();
+        // clear the local transaction pool from all transaction
         this.transactionPool.clear();
+        // clear transactions pool globaly
         this.p2pServer.broadcastClearTransactions();
     
         return block;

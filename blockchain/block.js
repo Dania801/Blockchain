@@ -23,7 +23,13 @@ class Block {
     }
 
     static genesis() {
-        return new this('Genesis time', '-----', 'f1r57-h45h', [], 0, DIFFICULTY);
+        let timestamp = new Date();
+        let lasthash = null;
+        let data = [];
+        let nonce = 0;
+        let difficulty = DIFFICULTY;
+        let hash = ChainUtil.hash(`${timestamp}${lasthash}${data}${nonce}${difficulty}`).toString();
+        return new this(new Date(), lasthash, hash, data, nonce, difficulty);
     }
 
     static mineBlock(lastBlock, data) {
