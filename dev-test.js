@@ -6,16 +6,16 @@
 //     console.log(bc.addBlock(`foo ${i}`).toString());
 // }
 
- const Wallet = require('./wallet');
- const TransactionPool = require('./wallet/transaction-pool');
- const Blockchain = require('./blockchain');
+//  const Wallet = require('./wallet');
+//  const TransactionPool = require('./wallet/transaction-pool');
+//  const Blockchain = require('./blockchain');
 // const Transaction = require('./wallet/transaction');
 // wallet = new Wallet();
 // amount = 50;
 // recipient = 'r3c1p13nt';
 // transaction = Transaction.newTransaction(wallet, recipient, amount);
 // console.log('The test!!!!',transaction.outputs.find(output => output.address === wallet.publicKey).amount);
- const INITIAL_BALANCE = require('./config').INITIAL_BALANCE;
+//  const INITIAL_BALANCE = require('./config').INITIAL_BALANCE;
 // let transaction, sendAmount, recipient;
 // sendAmount = 50;
 // recipient = 'r4nd0m-4ddr355';
@@ -44,11 +44,20 @@
 // console.log(wallet.calculateBalance(bc))
 // console.log(INITIAL_BALANCE + (addBalance * repeatAdd));
 
-let tp, wallet, transaction, bc;
-tp = new TransactionPool();
-wallet = new Wallet();
+// let tp, wallet, transaction, bc;
+// tp = new TransactionPool();
+// wallet = new Wallet();
+// bc = new Blockchain();
+// transaction = wallet.createTransaction('r4nd-4ddr355', 30, bc, tp);
+// console.log(tp.transactions.find(t => t.id === transaction.id));
+// console.log('===> transaction ', transaction);
+// console.log(tp.transactions.find(t => t.id === transaction.id) === transaction)
+
+const Blockchain = require('./blockchain');
+const Block = require('./blockchain/block');
+let bc, bc2;
 bc = new Blockchain();
-transaction = wallet.createTransaction('r4nd-4ddr355', 30, bc, tp);
-console.log(tp.transactions.find(t => t.id === transaction.id));
-console.log('===> transaction ', transaction);
-console.log(tp.transactions.find(t => t.id === transaction.id) === transaction)
+bc2 = new Blockchain();
+bc2.addBlock('goo');
+// bc.replaceChain(bc2.chain);
+console.log(bc2);

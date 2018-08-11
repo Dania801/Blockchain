@@ -5,15 +5,25 @@ class Blockchain {
         this.chain = [Block.genesis()];
     }
 
-    addBlock(data) {
-        const block = Block.mineBlock(this.chain[this.chain.length -1], data);
-        this.chain.push(block);
+    getBlockchain() {
+        return this.chain;
+    }
 
-        return block;
+    getLastestBlock() {
+        return this.chain[this.chain.length -1];
+    }
+
+    addBlock(data) {
+        const block = Block.mineBlock(this.getLastestBlock(), data);
+        if(Block.isValidNewBlock(block, this.getLastestBlock())) {
+            this.chain.push(block);
+            return block;
+        }
+        return false;
     }
 
     isValidChain(chain) {
-        if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) 
+        if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis()))
             return false;
         for (let i=1; i<chain.length; i++) {
           const block = chain[i];
