@@ -37,16 +37,34 @@ class Blockchain {
         return true;
       }
 
+    getAccumulatedDifficulty(blockchain) {
+        return blockchain
+            .map(block => block.difficulty)
+            .map(difficulty => Math.pow(2, difficulty))
+            .reduce((a, b) => a + b);
+    }
+
     replaceChain(newChain) {
-        if(newChain.length <= this.chain.legnth) {
-            console.log('Recieved chain not longer than the current chain.');
-            return;
-        } else if (!this.isValidChain(newChain)) {
+
+        if(!this.isValidChain(newChain)) {
             console.log('The recieved chain is not valid.');
             return;
+        } else if (this.getAccumulatedDifficulty(newChain) > this.getAccumulatedDifficulty(this.chain)){
+            console.log('Replacing blockchain with the new chain');
+            this.chain = newChain;
+        } else {
+            console.log('Recieved invalid blockchain!');
         }
-        console.log('Replacing blockchain with the new chain');
-        this.chain = newChain;
+
+        // if(newChain.length <= this.chain.legnth) {
+        //     console.log('Recieved chain not longer than the current chain.');
+        //     return;
+        // } else if (!this.isValidChain(newChain)) {
+        //     console.log('The recieved chain is not valid.');
+        //     return;
+        // }
+        // console.log('Replacing blockchain with the new chain');
+        // this.chain = newChain;
     }
 }
 
