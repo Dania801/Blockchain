@@ -23,7 +23,7 @@ app.get('/blocks', (req, res) => {
 
 app.post('/mine', (req, res) => {
     const block = bc.addBlock(req.body.data);
-    console.log(`New Blog added ${block.toString()}`);
+    console.log(`New Block added ${block.toString()}`);
     p2pServer.syncChains();
     res.status(201).redirect('/blocks');
 });
@@ -47,7 +47,8 @@ app.get('/public-key', (req, res) => {
 app.get('/mine-transactions', (req, res) => {
     const block = miner.mine();
     console.log(`New block added: ${block.toString()}`);
-    res.redirect('/blocks');
+    p2pServer.syncChains();
+    res.status(201).redirect('/blocks');
 });
 
 app.get('/balance', (req, res) => {

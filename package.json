@@ -1,7 +1,7 @@
 {
   "name": "blockchain",
   "version": "1.0.0",
-  "description": "",
+  "description": "A blockchain-based cryptocurrency implementation",
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
@@ -26,6 +26,6 @@
   "jest": {
     "verbose": true,
     "testURL": "http://localhost/",
-    "testEnvironment" : "node"
+    "testEnvironment": "node"
   }
 }
